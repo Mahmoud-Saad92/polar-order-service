@@ -1,0 +1,15 @@
+application:
+  version: @project.version@
+  title: BZA[order-service]
+
+server:
+  port: ${SERVER_PORT}
+  shutdown: graceful
+
+spring:
+  application:
+    name: order-service
+  profiles:
+    active: ${ACTIVE_PROFILE}
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
