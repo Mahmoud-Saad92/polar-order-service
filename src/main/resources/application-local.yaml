@@ -1,0 +1,20 @@
+server:
+  netty:
+    connection-timeout: 2s
+    idle-timeout: 15s
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/polar_db?currentSchema=ordersvc
+    username: 'polarAdmin'
+    password: 'polar@postgres123!@#'
+    pool:
+      initial-size: 5
+      max-size: 10
+      max-create-connection-time: 2s
+
+logging:
+  level:
+    com.bazinga.eg.orderservice: debug
+    org.springframework.boot: debug
+    org.springframework.web: debug
