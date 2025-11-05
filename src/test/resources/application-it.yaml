@@ -1,0 +1,9 @@
+spring:
+  r2dbc:
+    url: r2dbc:tc:postgresql:15:///polar_db?currentSchema=ordersvc
+
+logging:
+  level:
+    com.bazinga.eg.orderservice: debug
+    org.springframework.boot: debug
+    org.springframework.web: debug

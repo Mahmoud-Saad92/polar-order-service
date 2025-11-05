@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  labels:
+    app: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: order-service:0.0.1
+          imagePullPolicy: IfNotPresent
+          lifecycle: # makes kubernetes wait for 5 seconds before sending SIGTERM to the pod
+            preStop:
+              exec:
+                command: [ 'sh', '-c', 'sleep 5' ]
+          ports:
+            - containerPort: 8135
+          env:
+            - name: ACTIVE_PROFILE
+              value: 'dev'
+            - name: SERVER_PORT
+              value: '8136'
+            - name: CONFIG_SERVER_URI
+              value: 'configuration-service'
+            - name: CONFIG_SERVER_PORT
+              value: '80'
+            - name: POSTGRES_HOSTNAME
+              value: 'polar-postgres'
+            - name: POSTGRES_CONNECTION_POOL_INITIAL_SIZE
+              value: '5'
+            - name: POSTGRES_CONNECTION_POOL_MAX_SIZE
+              value: '10'
+            - name: POSTGRES_CONNECTION_POOL_MAX_CREATE_CONNECTION_TIME
+              value: '2s'
+            - name: POSTGRES_USER
+              value: 'polarAdmin'
+            - name: POSTGRES_PASSWORD
+              value: 'polar@postgres123!@#'
+            - name: POSTGRES_PORT
+              value: '5432'
+            - name: POSTGRES_DB
+              value: 'polar_db'
+            - name: POSTGRES_SCHEMA
+              value: 'ordersvc'
