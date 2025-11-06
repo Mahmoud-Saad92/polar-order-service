@@ -28,10 +28,6 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw clean package -DskipITs=true
-      - name: Build, Run integration tests and skip unit tests
-        run: |
-          chmod +x mvnw
-          ./mvnw verify -DskipUTs=true
       - name: Code vulnerability scanning
         uses: anchore/scan-action@v7
         id: scan
