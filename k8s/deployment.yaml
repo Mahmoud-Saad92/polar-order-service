@@ -51,3 +51,13 @@ spec:
               value: 'polar_db'
             - name: POSTGRES_SCHEMA
               value: 'ordersvc'
+            - name: CATALOG_SERVICE_URI
+              value: 'catalog-service'
+            - name: CATALOG_SERVICE_PORT
+              value: '80'
+            - name: TIMEOUT_DURATION_SECONDS
+              value: '3'
+            - name: RETRY_ATTEMPTS
+              value: '3'
+            - name: RETRY_INITIAL_BACKOFF_MS
+              value: '100'
