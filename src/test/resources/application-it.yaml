@@ -1,6 +1,15 @@
 spring:
   r2dbc:
-    url: r2dbc:tc:postgresql:15:///polar_db?currentSchema=ordersvc
+    pool:
+      initial-size: 5
+      max-size: 10
+      max-create-connection-time: 2s
+
+polar:
+  catalog-service-uri: 'http://localhost:8080'
+  timeout-duration-seconds: 3
+  retry-attempts: 3
+  retry-initial-backoff-ms: 100
 
 logging:
   level:
